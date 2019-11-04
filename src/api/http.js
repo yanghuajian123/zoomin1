@@ -20,7 +20,7 @@ service.interceptors.request.use(
     let token = localStorage.getItem("token");
     if (config.url != "/users/") {
       config.headers = {
-        Authorization: "JWT " + token
+        Authorization: "JWT" + token
       };
     }
     return config;
@@ -58,108 +58,146 @@ function useDefaultErrorMessage(isUseDefaultErrorMessage) {
 
 /**
  * 封装get方法
- * @param url
- * @param data
- * @returns {Promise}
+
  */
 
-export function get(url, params = {}) {
-  return new Promise((resolve, reject) => {
-    service
-      .get(url, {
-        params: params
-      })
-      .then(response => {
-        resolve(response.data);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+// export function get(url, params = {}) {
+//   return new Promise((resolve, reject) => {
+//     service
+//       .get(url, {
+//         params: params
+//       })
+//       .then(res => {
+//         resolve(res.data);
+//       })
+//       .catch(err => {
+//         reject(err);
+//       });
+//   });
+// }
+export async function get(url, params) {
+  try {
+    let res = await service.get(url, { params: params });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**
  * 封装post请求
- * @param url
- * @param data
- * @returns {Promise}
  */
 
-export function post(url, data = {}, isUseDefaultErrorMessage = true) {
-  return new Promise((resolve, reject) => {
-    service.post(url, data).then(
-      response => {
-        resolve(response.data);
-      },
-      err => {
-        console.log(isUseDefaultErrorMessage);
-        useDefaultErrorMessage(isUseDefaultErrorMessage);
-        reject(err);
-      }
-    );
-  });
+// export function post(url, data = {}, isUseDefaultErrorMessage = true) {
+//   return new Promise((resolve, reject) => {
+//     service.post(url, data).then(
+//       res => {
+//         resolve(res.data);
+//       },
+//       err => {
+//         console.log(isUseDefaultErrorMessage);
+//         useDefaultErrorMessage(isUseDefaultErrorMessage);
+//         reject(err);
+//       }
+//     );
+//   });
+// }
+export async function post(url, data = {}, isUseDefaultErrorMessage = true) {
+  try {
+    let res = await service.post(url, data);
+    return res.data;
+  } catch (err) {
+    console.log(isUseDefaultErrorMessage);
+    useDefaultErrorMessage(isUseDefaultErrorMessage);
+  }
 }
-
 /**
  * 封装patch请求
- * @param url
- * @param data
- * @returns {Promise}
  */
 
-export function patch(url, data = {}) {
-  return new Promise((resolve, reject) => {
-    axios.patch(url, data).then(
-      response => {
-        resolve(response.data);
-      },
-      err => {
-        reject(err);
-      }
-    );
-  });
+// export function patch(url, data = {}) {
+//   return new Promise((resolve, reject) => {
+//     axios.patch(url, data).then(
+//       res => {
+//         resolve(res.data);
+//       },
+//       err => {
+//         reject(err);
+//       }
+//     );
+//   });
+// }
+
+export async function patch(url, data = {}) {
+  try {
+    let res = service.patch(url, data);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**
  * 封装put请求
- * @param url
- * @param data
- * @returns {Promise}
+
  */
 
-export function put(url, data = {}) {
-  return new Promise((resolve, reject) => {
-    service.put(url, data).then(
-      response => {
-        resolve(response.data);
-      },
-      err => {
-        reject(err);
-      }
-    );
-  });
+// export function put(url, data = {}) {
+//   return new Promise((resolve, reject) => {
+//     service.put(url, data).then(
+//       res => {
+//         resolve(res.data);
+//       },
+//       err => {
+//         reject(err);
+//       }
+//     );
+//   });
+// }
+
+export async function put(url, data = {}) {
+  try {
+    let res = service.put(url, data);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
+
 /**
  * 封装delete请求
- * @param url
- * @param data
- * @returns {Promise}
+
  */
 
-export function toDelete(url, data = {}, isUseDefaultErrorMessage = true) {
-  return new Promise((resolve, reject) => {
-    service.delete(url, data).then(
-      res => {
-        resolve(res.data);
-      },
-      err => {
-        if (useDefaultErrorMessage == true) {
-          useDefaultErrorMessage(isUseDefaultErrorMessage);
-        }
-        reject(err);
-      }
-    );
-  });
+// export function toDelete(url, data = {}, isUseDefaultErrorMessage = true) {
+//   return new Promise((resolve, reject) => {
+//     service.delete(url, data).then(
+//       res => {
+//         resolve(res.data);
+//       },
+//       err => {
+//         if (useDefaultErrorMessage == true) {
+//           useDefaultErrorMessage(isUseDefaultErrorMessage);
+//         }
+//         reject(err);
+//       }
+//     );
+//   });
+// }
+
+export async function toDelete(
+  url,
+  data = {},
+  isUseDefaultErrorMessage = true
+) {
+  try {
+    let res = service.delete(url, data);
+    return res.data;
+  } catch (err) {
+    if (useDefaultErrorMessage == true) {
+      useDefaultErrorMessage(isUseDefaultErrorMessage);
+    }
+  }
 }
 
 export default function() {

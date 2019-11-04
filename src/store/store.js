@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import menu from "./menu.js";
+import menu from "./menu";
 
 Vue.use(Vuex);
 

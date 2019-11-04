@@ -47,7 +47,7 @@ export default {
       //编辑任务名
     },
     // 删除任务
-    deleteTask: function(id) {
+    deleteTask(id) {
       let cf = confirm("删除任务后无法恢复，是否删除？");
       if (cf) {
         this.$emit("deleteTask", id);
@@ -55,7 +55,7 @@ export default {
       }
     },
     taskDetail: function() {
-      this.$router.push("/home/task-detail/${this.id}");
+      this.$router.push(`/home/task-detail/${this.id}`);
     }
   }
 };

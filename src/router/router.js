@@ -16,6 +16,13 @@ const Login = () => import("@/views/Login");
 const LoginChild = () => import("@/components/login/LoginChild");
 const RegisterChild = () => import("@/components/login/RegisterChild");
 const DataImport = () => import("@/views/DataImport");
+const TaskDetail = () => import("@/components/dataimport/TaskDetail");
+const DataProcessing = () => import("@/views/DataProcessing");
+const DataAnalysis = () => import("@/views/DataAnalysis");
+const DataMining = () => import("@/views/DataMining");
+
+
+
 const router = new Router({
   mode: "history",
   base: base,
@@ -24,15 +31,7 @@ const router = new Router({
       path: "/",
       name: "welcomePage",
       component: welcomePage
-      // meta: {
-      //   requireAuth: true
-      // }
     },
-    // {
-    //   path: "/s",
-    //   name: "helloWorld",
-    //   component: helloWorld
-    // },
     {
       path: "/login",
       name: "login",
@@ -60,9 +59,42 @@ const router = new Router({
           meta: {
             requireAuth: true
           }
+        },
+        {
+          path: "task-detail/:id",
+          name: "task-detail",
+          component: TaskDetail,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: "data-processing/:id",
+          name: "data-processing",
+          component: DataProcessing,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path:"data-analysis",
+          name:"data-analysis",
+          component:DataAnalysis,
+          meta:{
+            requireAuth:true
+          }
+        },
+        {
+          path:"data-mining",
+          name:"data-mining",
+          component:DataMining,
+          meta:{
+            requireAuth:true
+          }
         }
       ]
     }
+  
   ]
 });
 
